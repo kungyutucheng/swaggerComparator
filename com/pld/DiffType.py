@@ -31,5 +31,5 @@ class DiffType(Enum):
     def get_diff_type(prefix, suffix):
         for diff_type in DiffType.__dict__:
             if (prefix + '_' + suffix).upper() == diff_type:
-                return DiffType.__getattribute__(DiffType,diff_type)
+                return DiffType.__getattribute__(DiffType, diff_type)
         return None

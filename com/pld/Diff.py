@@ -29,8 +29,6 @@ class Diff(object):
             if orig_api_path not in self.new_api_dict:
                 self.diff_method(orig_api_path, {}, orig_method_dict)
 
-
-
     # 对比不同的method，比如说新增了post，或者删除了get
     def diff_method(self, path, new_method_dict, orig_method_dict):
         for new_method in new_method_dict:

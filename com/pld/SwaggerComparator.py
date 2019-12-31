@@ -89,10 +89,6 @@ class SwaggerComparator(object):
         html_file.close()
 
 
-
-
-
-        
 if __name__ == '__main__':
     
     argvs = sys.argv
@@ -104,12 +100,12 @@ if __name__ == '__main__':
     if command == "diff":
         new_url = argvs[2]
         orig_url = argvs[3]
-        if not re.match(r'^https?:/{2}\w.+$',new_url):
-            print "first url is illegal"
+        if not re.match(r'^https?:/{2}\w.+$', new_url):
+            print "new url is illegal"
             exit(0)
 
-        if not re.match(r'^https?:/{2}\w.+$',orig_url):
-            print "second url is illegal"
+        if not re.match(r'^https?:/{2}\w.+$', orig_url):
+            print "original url is illegal"
             exit(0)
 
         swaggerComparator = SwaggerComparator()

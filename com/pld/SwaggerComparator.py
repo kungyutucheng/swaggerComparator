@@ -27,7 +27,6 @@ class SwaggerComparator(object):
         self.parser = Parser(orig_json)
         orig_api_dict = self.parser.parse()
 
-
         diff = Diff(new_api_dict, orig_api_dict)
         diff_property_list = diff.diff()
 

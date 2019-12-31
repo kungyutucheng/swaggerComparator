@@ -16,7 +16,6 @@ class SwaggerComparator(object):
     def __init__(self):
         self.downloader = Downloader()
 
-
     def diff(self,new_url,orig_url):
         new_response = requests.request("get", new_url)
         new_json = json.loads(new_response.content)

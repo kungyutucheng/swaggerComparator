@@ -1,14 +1,57 @@
 # -*- coding: UTF-8 -*-
-from DiffType import DiffType
-from DiffProperty import DiffProperty
-from PropertyType import PropertyType
+import requests
+import json
+import os
+import webbrowser
+from com.pld.enums.DiffType import DiffType
+from com.pld.model.DiffProperty import DiffProperty
+from com.pld.enums.PropertyType import PropertyType
+from Command import Command
+from Parser import Parser
+from com.pld.util.SystemUtil import SystemUtil
+from com.pld.util.HtmlGenerator import HtmlGenerator
 
 
-class Diff(object):
-    def __init__(self, new_api_dict, orig_api_dict):
-        self.new_api_dict = new_api_dict
-        self.orig_api_dict = orig_api_dict
+
+class Diff(Command):
+    def __init__(self, new_url, orig_url, dest_directory=SystemUtil.get_sys_user_path('swagger-html'), file_name='swagger-diff.html'):
+        self.new_api_dict = None
+        self.orig_api_dict = None
+        self.new_url = new_url
+        self.orig_url = orig_url
+        self.dest_directory = dest_directory
+        self.file_name = file_name
         self.diff_list = []
+
+    def execute(self):
+        # request the new_url and orig_url to get response json
+        new_response = requests.request("get", self.new_url)
+        new_json = json.loads(new_response.content)
+        orig_response = requests.request("get", self.orig_url)
+        orig_json = json.loads(orig_response.content)
+
+        # parse the response json of new_url and orig_url
+        parser = Parser(new_json)
+        self.new_api_dict = parser.parse()
+        parser = Parser(orig_json)
+        self.orig_api_dict = parser.parse()
+
+        # to generate the diff_list
+        self.diff()
+
+        # to generate the result html file
+        if self.dest_directory is None:
+            self.dest_directory = SystemUtil.get_sys_user_path('swagger-html')
+        if not os.path.isdir(self.dest_directory):
+            os.mkdir(self.dest_directory)
+        html_content = HtmlGenerator.generate_diff_html(self.new_url, self.orig_url, self.diff_list)
+        path = self.dest_directory + os.sep + self.file_name
+        html_file = open(path, 'w+')
+        html_file.write(html_content)
+        html_file.close()
+
+        # open html file using default web browser
+        webbrowser.open_new_tab('file:' + os.sep + os.sep + path)
 
     def diff(self):
         self.diff_path()

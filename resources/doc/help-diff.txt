@@ -1,0 +1,22 @@
+Usage: SwaggerComparator.py diff options parameters
+
+compare different version of swagger api-docs and then generate result file, based on which kind of result you choose
+
+Options:
+
+    -n new url, the url of new version swagger api-docs, you can find this url on swagger-ui.html, as usual we use the latest version of swagger. Of course,
+    you can use any version you like
+
+    -o orig url, the url of original version swagger api-docs, as usual, we use the last version ahead of the latest version of swagger.Like above, you can
+    use any version you like
+
+    -d the path of destination directory, you can provide a path to store the result. If absent, the result file will be saved in following path depend on your
+    system:
+
+    linux：/usr/local/${username}/swagger-html/swagger-diff.html
+
+    mac：/Users/${username}/swagger-html/swagger-diff.html
+
+    windows：C:\\Users\${username}\swagger-html\swagger-diff.html
+
+    -f the file name of the result, you should input a string with a suffix of html or htm. THe file name will be swagger-diff.html if absent.

@@ -1,17 +1,19 @@
 #-*- coding: UTF-8 -*-
 
-from Api import Api
-from Request import Request
-from Property import Property
-from Response import Response
-from Method import Method
+from com.pld.model.Api import Api
+from com.pld.model.Request import Request
+from com.pld.model.Property import Property
+from com.pld.model.Response import Response
+from com.pld.model.Method import Method
 
 
 class Parser(object):
 
     def __init__(self, json):
         if json is None:
-            raise Exception('解析内容不能为空')
+            raise Exception('the response of input url is empty')
+        if 'paths' not in json:
+            raise Exception('cannot parse result, please check your input url')
         self.paths = json['paths']
         self.definitions = json['definitions']
 

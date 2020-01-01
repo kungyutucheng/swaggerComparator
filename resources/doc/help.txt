@@ -1,0 +1,13 @@
+Usage: SwaggerComparator.py command options parameters
+
+a tiny util to show the difference between different version of swagger api-docs
+
+Options:
+
+Commands:
+
+    --help show help doc
+
+    diff   compare different version of swagger api-docs and then generate result file, based on which kind of result you choose
+
+

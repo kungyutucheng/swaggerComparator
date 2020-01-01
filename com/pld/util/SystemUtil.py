@@ -9,6 +9,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 
+
 class SystemUtil(object):
 
     @staticmethod

@@ -1,10 +1,10 @@
 #-*- coding: UTF-8 -*-
 
-from com.pld.model.Api import Api
-from com.pld.model.Request import Request
-from com.pld.model.Property import Property
-from com.pld.model.Response import Response
-from com.pld.model.Method import Method
+from com.kungyu.model.Api import Api
+from com.kungyu.model.Request import Request
+from com.kungyu.model.Property import Property
+from com.kungyu.model.Response import Response
+from com.kungyu.model.Method import Method
 
 
 class Parser(object):

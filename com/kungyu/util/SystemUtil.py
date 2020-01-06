@@ -3,7 +3,7 @@ import sys
 import getpass
 import platform
 import os
-from com.pld.enums.OsType import OsType
+from com.kungyu.enums.OsType import OsType
 
 reload(sys)
 sys.setdefaultencoding('utf8')

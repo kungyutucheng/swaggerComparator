@@ -1,14 +1,14 @@
 # -*- coding: UTF-8 -*-
 import sys
 
-from com.pld.model.common.Contact import Contact
-from com.pld.model.common.Info import Info
-from com.pld.model.common.ExternalDocumentation import ExternalDocumentation
-from com.pld.model.common.Tag import Tag
-from com.pld.model.common.License import License
-from com.pld.model.base.Schema import Schema
-from com.pld.model.common.Xml import Xml
-from com.pld.model.base.BaseParameter import BaseParameter
+from com.kungyu.model.common.Contact import Contact
+from com.kungyu.model.common.Info import Info
+from com.kungyu.model.common.ExternalDocumentation import ExternalDocumentation
+from com.kungyu.model.common.Tag import Tag
+from com.kungyu.model.common.License import License
+from com.kungyu.model.base.Schema import Schema
+from com.kungyu.model.common.Xml import Xml
+from com.kungyu.model.base.BaseParameter import BaseParameter
 
 reload(sys)
 sys.setdefaultencoding('utf8')

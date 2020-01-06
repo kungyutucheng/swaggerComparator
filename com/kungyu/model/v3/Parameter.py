@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import sys
-from com.pld.model.base.Parameter import Parameter
-from com.pld.model.base.BaseParameter import BaseParameter
+from com.kungyu.model.base.Parameter import Parameter
+from com.kungyu.model.base.BaseParameter import BaseParameter
 
 reload(sys)
 sys.setdefaultencoding('utf8')

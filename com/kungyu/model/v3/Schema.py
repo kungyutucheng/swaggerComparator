@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import sys
-from com.pld.model.base.Schema import Schema
+from com.kungyu.model.base.Schema import Schema
 
 reload(sys)
 sys.setdefaultencoding('utf8')

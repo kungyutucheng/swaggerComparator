@@ -6,8 +6,8 @@ import json
 import platform
 import getpass
 import getopt
-from com.pld.diff.Parser import Parser
-from com.pld.diff.Diff import Diff
+from com.kungyu.diff.Parser import Parser
+from com.kungyu.diff.Diff import Diff
 from util.FileLoader import FileLoader
 
 

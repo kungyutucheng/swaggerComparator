@@ -3,15 +3,15 @@ import sys
 import requests
 import json
 from Parser import Parser
-from com.pld.model.v2.Swagger import Swagger
-from com.pld.model.v2.Schema import Schema
-from com.pld.model.v2.Response import Response
-from com.pld.model.v2.Parameter import Parameter
-from com.pld.model.v2.Operation import Operation
-from com.pld.model.v2.PathItem import PathItem
-from com.pld.enums.InType import InType
-from com.pld.model.v2.Item import Item
-from com.pld.model.v2.SecuritySchema import SecuritySchema
+from com.kungyu.model.v2.Swagger import Swagger
+from com.kungyu.model.v2.Schema import Schema
+from com.kungyu.model.v2.Response import Response
+from com.kungyu.model.v2.Parameter import Parameter
+from com.kungyu.model.v2.Operation import Operation
+from com.kungyu.model.v2.PathItem import PathItem
+from com.kungyu.enums.InType import InType
+from com.kungyu.model.v2.Item import Item
+from com.kungyu.model.v2.SecuritySchema import SecuritySchema
 
 reload(sys)
 sys.setdefaultencoding('utf8')

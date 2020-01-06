@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import sys
-from com.pld.model.base.PathItem import PathItem
+from com.kungyu.model.base.PathItem import PathItem
 
 reload(sys)
 sys.setdefaultencoding('utf8')

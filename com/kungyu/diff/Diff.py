@@ -3,13 +3,13 @@ import requests
 import json
 import os
 import webbrowser
-from com.pld.enums.DiffType import DiffType
-from com.pld.model.DiffProperty import DiffProperty
-from com.pld.enums.PropertyType import PropertyType
+from com.kungyu.enums.DiffType import DiffType
+from com.kungyu.model.DiffProperty import DiffProperty
+from com.kungyu.enums.PropertyType import PropertyType
 from Command import Command
 from Parser import Parser
-from com.pld.util.SystemUtil import SystemUtil
-from com.pld.util.HtmlGenerator import HtmlGenerator
+from com.kungyu.util.SystemUtil import SystemUtil
+from com.kungyu.util.HtmlGenerator import HtmlGenerator
 
 
 

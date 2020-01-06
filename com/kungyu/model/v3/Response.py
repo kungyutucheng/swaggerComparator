@@ -1,11 +1,12 @@
 # -*- coding: UTF-8 -*-
 import sys
-from com.kungyu.model.Response import Response
 
 reload(sys)
 sys.setdefaultencoding('utf8')
 
 
-class Response(Response):
+class Response(object):
     content = {}
     links = {}
+    description = None
+    headers = {}

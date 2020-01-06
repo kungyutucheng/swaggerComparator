@@ -10,3 +10,6 @@ class Schema(Schema):
     discriminator = None
     write_only = None
     deprecated = None
+    any_of = {}
+    one_of = {}
+    not_ = {}

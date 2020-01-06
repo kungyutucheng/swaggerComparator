@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf8')
 
 class Schema(BaseParameter):
     title = None
-    allOf = None
+    all_of = None
     properties = None
     additional_properties = None
     read_only = None

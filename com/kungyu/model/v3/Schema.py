@@ -13,3 +13,4 @@ class Schema(Schema):
     any_of = {}
     one_of = {}
     not_ = {}
+    nullable = None

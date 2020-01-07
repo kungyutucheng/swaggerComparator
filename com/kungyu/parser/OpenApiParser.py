@@ -18,6 +18,8 @@ from com.kungyu.model.v3.Encoding import Encoding
 from com.kungyu.model.v3.Example import Example
 from com.kungyu.model.v3.Link import Link
 from com.kungyu.model.v3.MediaType import MediaType
+from com.kungyu.model.v3.SecuritySchema import SecuritySchema
+from com.kungyu.model.v3.OAuthFlow import OAuthFlow
 
 
 reload(sys)
@@ -36,6 +38,7 @@ class OpenApiParser(Parser):
         openapi.info = self.parser.parse_info(self.json.get('info'))
         openapi.servers = self.parse_servers(self.json.get('servers'))
         openapi.paths = self.parse_paths(self.json.get('paths'))
+        openapi.components = self.parse_components(self.json.get('components'))
         return openapi
 
     def parse_servers(self, servers_json):
@@ -79,7 +82,6 @@ class OpenApiParser(Parser):
         for url in paths_json:
             path_item = PathItem()
             operate_map = {}
-            parameters = {}
             path_item_json = paths_json.get(url)
             for method in path_item_json:
                 operate_map[method] = self.parse_operation(path_item_json.get(method))
@@ -120,22 +122,30 @@ class OpenApiParser(Parser):
     def parse_schema(self, schema_json):
         if schema_json is None:
             return None
-        schema = Schema()
-        self.parse_base_parameter(schema, schema_json)
-        self.parse_base_base_parameter(schema, schema_json)
+        if '$ref' in schema_json:
+            return schema_json
+        else:
+            schema = Schema()
+            self.parse_base_parameter(schema, schema_json)
+            self.parse_base_base_parameter(schema, schema_json)
 
-        schema.discriminator = self.parse_discriminator(schema_json.get('discriminator'))
-        schema.write_only = schema_json.get('write_only')
-        schema.deprecated = schema_json.get('deprecated')
+            schema.discriminator = self.parse_discriminator(schema_json.get('discriminator'))
+            schema.write_only = schema_json.get('write_only')
+            schema.deprecated = schema_json.get('deprecated')
+            schema.example = schema_json.get('example')
+            schema.xml = self.parser.parse_xml(schema_json.get('xml'))
+            schema.external_docs = self.parse_external_docs(schema_json.get('externalDocs'))
+            schema.nullable = schema_json.get('nullable')
+            schema.title = schema_json.get('title')
 
-        schema.all_of = self.parse_schema_properties(schema_json.get('allOf'))
-        schema.properties = self.parse_schema_properties(schema_json.get('properties'))
-        schema.any_of = self.parse_schema_properties(schema_json.get('anyOf'))
-        schema.one_of = self.parse_schema_properties(schema_json.get('oneOf'))
-        schema.additional_properties = self.parse_schema_properties(schema_json.get('additionalProperties'))
-        schema.not_ = self.parse_schema_properties(schema_json.get('not'))
-        schema.items = self.parse_schema(schema_json.get('items'))
-        return schema
+            schema.all_of = self.parse_schema_properties(schema_json.get('allOf'))
+            schema.properties = self.parse_schema_properties(schema_json.get('properties'))
+            schema.any_of = self.parse_schema_properties(schema_json.get('anyOf'))
+            schema.one_of = self.parse_schema_properties(schema_json.get('oneOf'))
+            schema.additional_properties = self.parse_schema(schema_json.get('additionalProperties'))
+            schema.not_ = self.parse_schema_properties(schema_json.get('not'))
+            schema.items = self.parse_schema(schema_json.get('items'))
+            return schema
 
     def parse_schema_properties(self, properties_json):
         properties = {}
@@ -298,6 +308,86 @@ class OpenApiParser(Parser):
         for name in security_json:
             security[name] = security_json.get(name)
         return security
+
+    def parse_components(self, components_json):
+        component = Component()
+        component.schemas = self.parse_schemas(components_json.get('schemas'))
+        component.responses = self.parse_responses(components_json.get('responses'))
+        component.parameters = self.parse_parameters_map(components_json.get('parameters'))
+        component.examples = self.parse_examples(components_json.get('examples'))
+        component.request_bodies = self.parse_request_bodies(components_json.get('requestBodies'))
+        component.headers = self.parse_headers(components_json.get('headers'))
+        component.security_schemes = self.parse_security_schemas(components_json.get('securitySchemas'))
+        component.links = self.parse_links(components_json.get('links'))
+        component.callbacks = components_json.get('callbacks')
+        return component
+
+    def parse_schemas(self, schemas_json):
+        schemas = {}
+        if schemas_json is None:
+            return schemas
+        for name in schemas_json:
+            schemas[name] = self.parse_schema(schemas_json.get(name))
+        return schemas
+
+    def parse_request_bodies(self, request_bodies_json):
+        request_bodies = {}
+        if request_bodies_json is None:
+            return request_bodies
+        for name in request_bodies:
+            request_bodies[name] = self.parse_request_body(request_bodies_json.get(name))
+        return request_bodies
+
+    def parse_security_schemas(self, security_schemas_json):
+        security_schemas = {}
+        if security_schemas_json is None:
+            return security_schemas
+        for name in security_schemas_json:
+            security_schemas[name] = self.parse_secuirty_schema(security_schemas_json.get(name))
+        return security_schemas
+
+    def parse_secuirty_schema(self, security_schema_json):
+        if security_schema_json is None:
+            return None
+        if '$ref' in security_schema_json:
+            return security_schema_json
+        else:
+            security_schema = SecuritySchema()
+            security_schema.name = security_schema_json.get('name')
+            security_schema.description = security_schema_json.get('description')
+            security_schema.schema = security_schema_json.get('schema')
+            security_schema.type = security_schema_json.get('type')
+            security_schema.in_ = security_schema_json.get('in')
+            security_schema.bearer_format = security_schema_json.get('bearerFormat')
+            security_schema.flows = self.parse_flows(security_schema_json.get('flows'))
+            security_schema.open_id_connect_url = security_schema_json.get('openIdConnectUrl')
+            return security_schema
+
+    def parse_flows(self, flows_json):
+        flows = {}
+        if flows_json is None:
+            return flows
+        for name in flows_json:
+            flows[name] = self.parse_flow(flows_json.get(name))
+        return flows
+
+    def parse_flow(self, flow_json):
+        if flow_json is None:
+            return None
+        flow = OAuthFlow()
+        flow.authorization_url = flow_json.get('authorizationUrl')
+        flow.token_url = flow_json.get('tokenUrl')
+        flow.refresh_url = flow_json.get('refreshUrl')
+        flow.scopes = flow_json.get('scopes')
+        return flow
+
+    def parse_parameters_map(self, parameters_json):
+        parameters = {}
+        if parameters_json is None:
+            return parameters
+        for name in parameters_json:
+            parameters[name] = self.parse_parameter(parameters_json.get(name))
+        return parameters
 
 
 if __name__ == '__main__':

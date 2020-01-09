@@ -110,7 +110,7 @@ class SwaggerDiff(Command):
         for new_parameter in new_parameters:
             flag = False
             for orig_parameter in orig_parameters:
-                if new_parameter.get('name') == orig_parameter.get('name'):
+                if new_parameter.name == orig_parameter.name:
                     # 对比旧参数
                     self.diff_parameter(path, method, summary, new_parameter, orig_parameter)
                     flag = True
@@ -121,7 +121,7 @@ class SwaggerDiff(Command):
         for orig_parameter in orig_parameters:
             flag = False
             for new_parameter in new_parameters:
-                if orig_parameter.get('name') == new_parameter.get('name'):
+                if orig_parameter.name == new_parameter.name:
                     flag = True
             if not flag:
                 self.build_parameter_diff(path, method, summary, DiffType.REQUEST_PARAMETER_DELETE, None, orig_parameter)
@@ -164,6 +164,8 @@ class SwaggerDiff(Command):
     
     """
     def diff_schema(self, path, method, summary, new_schema, orig_schema, new_name, property_type):
+        if new_schema is None or orig_schema is None:
+            return
         new_ref = new_schema.items.ref
         orig_ref = orig_schema.items.ref
         # 防止object中的items引用自身造成死循环
@@ -254,15 +256,12 @@ class SwaggerDiff(Command):
 
     def build_response_diif(self, path, method, summary, diff_type, new_response, orig_response, field_name, http_code):
         if diff_type == DiffType.RESPONSE_HTTP_STATUS_ADD:
-            diff_property = DiffProperty(path, method, diff_type, http_code, None, None, summary)
-            diff_property.http_code = http_code
-            self.diff_list.append(diff_property)
+            self.diff_list.append(DiffProperty(path, method, diff_type, http_code, None, None, summary, http_code))
         if diff_type == DiffType.RESPONSE_HTTP_STATUS_DELETE:
-            diff_property = DiffProperty(path, method, diff_type, None, http_code, None, summary)
-            diff_property.http_code = http_code
-            self.diff_list.append(diff_property)
+            self.diff_list.append(DiffProperty(path, method, diff_type, None, http_code, None, summary, http_code))
 
     def diff_response(self, path, method, summary, new_response, orig_response, http_code):
         if new_response.description != orig_response.description:
             self.build_response_diif(path, method, summary, DiffType.RESPONSE_PARAMETER_MODIFY_DESC, new_response, orig_response, None, http_code)
-        self.generate_schema(path, method, summary, new_response.schema.ref, orig_response.schema.ref, PropertyType.RESPONSE)
+        if new_response.schema is not None:
+            self.generate_schema(path, method, summary, new_response.schema.ref, orig_response.schema.ref, PropertyType.RESPONSE)

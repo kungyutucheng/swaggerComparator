@@ -5,7 +5,7 @@ sys.setdefaultencoding('utf8')
 
 
 class DiffProperty(object):
-    def __init__(self, path, method, diff_type, new_value, orig_value, field_name=None, remark = None):
+    def __init__(self, path, method, diff_type, new_value, orig_value, field_name=None, remark=None, http_code=None):
         self.path = path
         self.method = method
         self.diff_type = diff_type
@@ -13,6 +13,7 @@ class DiffProperty(object):
         self.new_value = new_value
         self.field_name = field_name
         self.remark = remark
+        self.http_code = http_code
 
     def to_tr_html(self):
         empty_td = '<td></td>'

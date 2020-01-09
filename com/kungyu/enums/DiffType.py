@@ -13,7 +13,7 @@ class DiffType(Enum):
     API_ADD = '新增接口'
     API_DELETE = '删除接口'
     API_METHOD_MODIFY_SUMMARY = '修改接口名称'
-    API_METHOD_MODIFY_TAGS = '修改接口集合名称'
+    API_METHOD_MODIFY_TAGS = '修改接口标签'
     API_METHOD_MODIFY_DESCRIPTION = '修改接口描述'
     API_METHOD_MODIFY_CONSUMES = '修改请求content-type'
     API_METHOD_MODIFY_PRODUCES = '修改响应content-type'

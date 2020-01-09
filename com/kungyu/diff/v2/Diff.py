@@ -40,3 +40,9 @@ class Diff(Command):
             pass
         else:
             print('cannot generate result based on different versions of swagger api')
+
+
+if __name__ == '__main__':
+
+    diff = Diff('http://localhost:9003/v2/api-docs','http://localhost:9002/v2/api-docs')
+    diff.execute()

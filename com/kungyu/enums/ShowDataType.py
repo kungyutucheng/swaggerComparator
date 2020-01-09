@@ -7,7 +7,7 @@ sys.setdefaultencoding('utf8')
 
 
 class ShowDataType(Enum):
-    integer = "integer"
-    number = "number"
-    string = "string"
-    boolean = "boolean"
+    INTEGER = 'integer'
+    NUMBER = 'number'
+    STRING = 'string'
+    BOOLEAN = 'boolean'

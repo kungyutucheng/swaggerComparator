@@ -158,18 +158,7 @@ class SwaggerParser(Parser):
         return schema
 
     """
-    "AccountGetNeedGuideStatusResp": {
-            "type": "object",
-            "required": [
-                "needGuideStatus"
-            ],
-            "properties": {
-                "needGuideStatus": {
-                    "type": "string",
-                    "description": "客户是否需要引导，1:需要，2:不需要"
-                }
-            }
-        }
+   
     """
     def parse_schema_properties(self, properties_json):
         properties = {}

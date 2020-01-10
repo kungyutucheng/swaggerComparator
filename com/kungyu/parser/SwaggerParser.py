@@ -46,6 +46,8 @@ class SwaggerParser(Parser):
         paths = {}
         if json is None:
             return paths
+        if paths_dict is None:
+            return paths
         for url in paths_dict:
             path_item = PathItem()
             operation_map = {}

@@ -40,6 +40,7 @@ class HtmlGenerator(object):
         <p>当前版本：%s</p><br/>
         <p>对比版本：%s</p><br/>
         <table><tr>
+        <th>序号</th>
         <th>接口url</th>
         <th>method</th>
         <th>改动类型</th>
@@ -51,6 +52,7 @@ class HtmlGenerator(object):
         </tr>
         """ % (new_url, orig_url)
 
+        index = 1
         for diff_property in diff_property_list:
             # 处理None
             if diff_property.path is None:
@@ -87,8 +89,9 @@ class HtmlGenerator(object):
                 <td><s>%s<s></td>
                 <td><s>%s<s></td>
                 <td><s>%s<s></td>
+                <td><s>%s<s></td>
                 </tr>
-                """ % (diff_property.path, diff_property.method, diff_property.diff_type, diff_property.field_name, diff_property.http_code, diff_property.orig_value, diff_property.new_value, diff_property.remark)
+                """ % (index, diff_property.path, diff_property.method, diff_property.diff_type, diff_property.field_name, diff_property.http_code, diff_property.orig_value, diff_property.new_value, diff_property.remark)
             else:
                 html += """
                 <tr>
@@ -100,9 +103,11 @@ class HtmlGenerator(object):
                 <td>%s</td>
                 <td>%s</td>
                 <td>%s</td>
+                <td>%s</td>
                 </tr>
-                """ % (diff_property.path, diff_property.method, diff_property.diff_type, diff_property.field_name, diff_property.http_code, diff_property.orig_value, diff_property.new_value, diff_property.remark)
+                """ % (index, diff_property.path, diff_property.method, diff_property.diff_type, diff_property.field_name, diff_property.http_code, diff_property.orig_value, diff_property.new_value, diff_property.remark)
 
+            index += 1
         html += """
         </table>
         </body>

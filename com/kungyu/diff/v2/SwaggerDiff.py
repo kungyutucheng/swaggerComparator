@@ -105,6 +105,11 @@ class SwaggerDiff(Command):
             self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.consumes, orig_operation.consumes, new_operation.summary))
         elif diff_type == DiffType.API_METHOD_MODIFY_PRODUCES:
             self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.produces, orig_operation.produces, new_operation.summary))
+        elif diff_type == DiffType.API_METHOD_ADD:
+            self.diff_list.append(DiffProperty(path, method, diff_type, path, None, new_operation.summary))
+        elif diff_type == DiffType.API_METHOD_DELETE:
+            self.diff_list.append(DiffProperty(path, method, diff_type, None, path, orig_operation.summary))
+
 
     def diff_parameters(self, path, method, summary, new_parameters, orig_parameters):
         for new_parameter in new_parameters:

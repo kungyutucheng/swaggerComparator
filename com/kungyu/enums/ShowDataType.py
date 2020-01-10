@@ -11,3 +11,5 @@ class ShowDataType(Enum):
     NUMBER = 'number'
     STRING = 'string'
     BOOLEAN = 'boolean'
+    ARRAY = 'array'
+    OBJECT = 'object'

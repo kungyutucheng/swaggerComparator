@@ -9,6 +9,7 @@ from com.kungyu.enums.DiffType import DiffType
 from com.kungyu.model.DiffProperty import DiffProperty
 from com.kungyu.util.TypeConvertor import TypeConvertor
 from com.kungyu.enums.PropertyType import PropertyType
+from com.kungyu.enums.ShowDataType import ShowDataType
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -94,21 +95,21 @@ class SwaggerDiff(Command):
 
     def build_operation_diff(self, path, method, diff_type, new_operation, orig_operation):
         if diff_type == DiffType.API_METHOD_MODIFY_TAGS:
-            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.tags, orig_operation.tags, new_operation.summary))
+            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.tags, orig_operation.tags, None, new_operation.summary))
         elif diff_type == DiffType.API_METHOD_MODIFY_SUMMARY:
             self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.summary, orig_operation.summary))
         elif diff_type == DiffType.API_METHOD_MODIFY_DESCRIPTION:
-            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.description, orig_operation.description, new_operation.summary))
+            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.description, orig_operation.description, None, new_operation.summary))
         elif diff_type == DiffType.API_METHOD_MODIFY_DEPRECATED:
-            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.deprecated, orig_operation.deprecated, new_operation.summary))
+            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.deprecated, orig_operation.deprecated, None, new_operation.summary))
         elif diff_type == DiffType.API_METHOD_MODIFY_CONSUMES:
-            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.consumes, orig_operation.consumes, new_operation.summary))
+            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.consumes, orig_operation.consumes, None, new_operation.summary))
         elif diff_type == DiffType.API_METHOD_MODIFY_PRODUCES:
-            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.produces, orig_operation.produces, new_operation.summary))
+            self.diff_list.append(DiffProperty(path, method, diff_type, new_operation.produces, orig_operation.produces, None, new_operation.summary))
         elif diff_type == DiffType.API_METHOD_ADD:
-            self.diff_list.append(DiffProperty(path, method, diff_type, path, None, new_operation.summary))
+            self.diff_list.append(DiffProperty(path, method, diff_type, method, None, None, new_operation.summary))
         elif diff_type == DiffType.API_METHOD_DELETE:
-            self.diff_list.append(DiffProperty(path, method, diff_type, None, path, orig_operation.summary))
+            self.diff_list.append(DiffProperty(path, method, diff_type, None, method, None, orig_operation.summary))
 
 
     def diff_parameters(self, path, method, summary, new_parameters, orig_parameters):
@@ -229,20 +230,22 @@ class SwaggerDiff(Command):
         return self.orig_swagger.definitions.get(definition_name)
 
     def build_schema_diff(self, path, method, summary, diff_type, new_schema, orig_schema, field_name):
-        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_TYPE:
+        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_TYPE or diff_type == DiffType.RESPONSE_SCHEMA_MODIFY_TYPE:
             self.diff_list.append(DiffProperty(path, method, diff_type, TypeConvertor.convertToActualDataType(new_schema.type, new_schema.format), TypeConvertor.convertToActualDataType(orig_schema.type, orig_schema.format), field_name, summary))
-        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_ALLOW_VALUES:
+        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_ALLOW_VALUES or diff_type == DiffType.RESPONSE_SCHEMA_MODIFY_ALLOW_VALUES:
             self.diff_list.append(DiffProperty(path, method, diff_type, new_schema.enum, orig_schema.enum, field_name, summary))
-        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_READONLY:
+        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_READONLY or diff_type == DiffType.RESPONSE_SCHEMA_MODIFY_READONLY:
             self.diff_list.append(DiffProperty(path, method, diff_type, new_schema.read_only, orig_schema.read_only, field_name, summary))
-        if diff_type == DiffType.REQUEST_SCHEMA_FIELD_ADD:
+        if diff_type == DiffType.REQUEST_SCHEMA_FIELD_ADD or diff_type == DiffType.RESPONSE_SCHEMA_FIELD_ADD:
             self.diff_list.append(DiffProperty(path, method, diff_type, field_name, None, field_name, summary))
-        if diff_type == DiffType.REQUEST_SCHEMA_FIELD_DELETE:
+        if diff_type == DiffType.REQUEST_SCHEMA_FIELD_DELETE or diff_type == DiffType.RESPONSE_SCHEMA_FIELD_DELETE:
             self.diff_list.append(DiffProperty(path, method, diff_type, None, field_name, field_name, summary))
-        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_DESC:
+        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_DESC or diff_type == DiffType.RESPONSE_SCHEMA_MODIFY_DESC:
             self.diff_list.append(DiffProperty(path, method, diff_type, new_schema.description, orig_schema.description, field_name, summary))
-        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_REQUIRED:
-            self.diff_list.append(DiffProperty(path, method, diff_type, self.generate_schema_required(new_schema.required, field_name), self.generate_schema_required(orig_schema.required, field_name)), field_name, summary)
+        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_REQUIRED or diff_type == DiffType.RESPONSE_SCHEMA_MODIFY_REQUIRED:
+            self.diff_list.append(DiffProperty(path, method, diff_type, self.generate_schema_required(new_schema.required, field_name), self.generate_schema_required(orig_schema.required, field_name), field_name, summary))
+        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_ITEMS_TYPE or diff_type == DiffType.RESPONSE_SCHEMA_MODIFY_ITEMS_TYPE:
+            self.diff_list.append(DiffProperty(path, method, diff_type, TypeConvertor.convertToActualDataType(new_schema.type, new_schema.format), TypeConvertor.convertToActualDataType(orig_schema.type, orig_schema.format), None, summary))
 
     def generate_schema_required(self, required_list, name):
         if required_list is None:
@@ -269,4 +272,50 @@ class SwaggerDiff(Command):
         if new_response.description != orig_response.description:
             self.build_response_diif(path, method, summary, DiffType.RESPONSE_PARAMETER_MODIFY_DESC, new_response, orig_response, None, http_code)
         if new_response.schema is not None:
-            self.generate_schema(path, method, summary, new_response.schema.ref, orig_response.schema.ref, PropertyType.RESPONSE)
+            if new_response.schema.ref is not None:
+                self.generate_schema(path, method, summary, new_response.schema.ref, orig_response.schema.ref, PropertyType.RESPONSE)
+            else:
+                if new_response.schema.type == ShowDataType.ARRAY:
+                    self.diff_schema_list(path, method, summary, new_response.schema, orig_response.schema, PropertyType.RESPONSE)
+                else:
+                    # 单纯的response，不带任何名称，接口直接返回基本类型
+                    self.diff_schema_base(path, method, summary, new_response.schema, orig_response.schema, PropertyType.RESPONSE)
+
+    def diff_schema_base(self, path, method, summary, new_schema, orig_schema, property_type):
+        suffix = None
+        if new_schema.type != orig_schema.type or new_schema.format != orig_schema.format:
+            suffix = 'schema_modify_type'
+        if suffix:
+            self.build_schema_diff(path, method, summary, DiffType.get_diff_type(property_type, suffix), new_schema, orig_schema, None)
+
+    """
+    "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+    """
+    def diff_schema_list(self, path, method, summary, new_schema, orig_schema, property_type):
+        new_items = new_schema.items
+        orig_items = orig_schema.items
+        suffix = None
+        if new_items.type != orig_items.type or new_items.format != orig_items.format:
+            suffix = 'schema_modify_items_type'
+        if suffix:
+            self.build_schema_diff(path, method, summary, DiffType.get_diff_type(property_type, suffix), new_items, orig_items, None)

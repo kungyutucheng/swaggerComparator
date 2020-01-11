@@ -154,7 +154,7 @@ class SwaggerDiff(Command):
 
     def build_parameter_diff(self, path, method, summary, diff_type, new_parameter, orig_parameter):
         if diff_type == DiffType.REQUEST_PARAMETER_MODIFY_TYPE:
-            self.diff_list.append(DiffProperty(path, method, diff_type, TypeConvertor.convertToActualDataType(new_parameter.type, new_parameter.format), TypeConvertor.convertToActualDataType(orig_parameter.type, orig_parameter.format), new_parameter.field_name, summary))
+            self.diff_list.append(DiffProperty(path, method, diff_type, TypeConvertor.convertToActualDataType(new_parameter.type, new_parameter.format), TypeConvertor.convertToActualDataType(orig_parameter.type, orig_parameter.format), new_parameter.name, summary))
         if diff_type == DiffType.REQUEST_PARAMETER_MODIFY_REQUIRED:
             self.diff_list.append(DiffProperty(path, method, diff_type, new_parameter.required, orig_parameter.required, new_parameter.name, summary))
         if diff_type == DiffType.REQUEST_PARAMETER_MODIFY_DESC:

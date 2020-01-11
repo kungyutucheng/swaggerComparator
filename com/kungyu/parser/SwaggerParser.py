@@ -157,6 +157,7 @@ class SwaggerParser(Parser):
         schema.properties = self.parse_schema_properties(schema_json.get('properties'))
         schema.additional_properties = self.parse_schema_properties(schema_json.get('additional_properties'))
         schema.items = self.parse_schema(schema_json.get('items'))
+        schema.required = schema_json.get('required')
         return schema
 
     """

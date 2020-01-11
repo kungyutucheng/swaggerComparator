@@ -11,3 +11,4 @@ class Schema(Schema):
     ref = None
     description = None
     discriminator = None
+    required = None

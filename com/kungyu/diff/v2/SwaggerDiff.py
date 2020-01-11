@@ -172,23 +172,30 @@ class SwaggerDiff(Command):
     def diff_schema(self, path, method, summary, new_schema, orig_schema, new_name, property_type):
         if new_schema is None or orig_schema is None:
             return
-        new_ref = new_schema.items.ref
-        orig_ref = orig_schema.items.ref
-        # 防止object中的items引用自身造成死循环
-        if new_ref != new_name:
-            # 对比items内的数据引用
-            self.generate_schema(path, method, summary, new_ref, orig_ref, property_type)
+        if new_schema.items is not None:
+            new_ref = new_schema.items.ref
+            orig_ref = orig_schema.items.ref
+            # 防止object中的items引用自身造成死循环
+            if new_ref != new_name:
+                # 对比items内的数据引用
+                self.generate_schema(path, method, summary, new_ref, orig_ref, property_type)
 
         suffix = None
         # 通过type和format综合判断类型是否一致
         if new_schema.type != orig_schema.type or new_schema.format != orig_schema.format:
             suffix = 'schema_modify_type'
+            diff_type = DiffType.get_diff_type(property_type, suffix)
+            self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
         # 判断可选值是否一致
         if new_schema.enum != orig_schema.enum:
             suffix = 'schema_modify_enum'
+            diff_type = DiffType.get_diff_type(property_type, suffix)
+            self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
         # 判断只读属性是否一致
         if new_schema.read_only != orig_schema.read_only:
             suffix = 'schema_modify_readonly'
+            diff_type = DiffType.get_diff_type(property_type, suffix)
+            self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
         # 判断object内部属性是否一致
         new_properties = new_schema.properties
         orig_properties = orig_schema.properties
@@ -199,19 +206,24 @@ class SwaggerDiff(Command):
             else:
                 # 新增的字段
                 suffix = 'schema_field_add'
+                diff_type = DiffType.get_diff_type(property_type, suffix)
+                self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_property_name)
         for orig_property_name in orig_properties:
             if orig_property_name not in new_properties:
                 # 删除字段
                 suffix = 'schema_field_delete'
+                diff_type = DiffType.get_diff_type(property_type, suffix)
+                self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, orig_property_name)
         # 判断描述是否一致
         if new_schema.description != orig_schema.description:
             suffix = 'schema_modify_description'
+            diff_type = DiffType.get_diff_type(property_type, suffix)
+            self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
         # 判断必填是否一致
         new_schema_required = self.generate_schema_required(new_schema.required, new_name)
         orig_schema_required = self.generate_schema_required(orig_schema.required, new_name)
         if new_schema_required != orig_schema_required:
             suffix = 'schema_modify_required'
-        if suffix:
             diff_type = DiffType.get_diff_type(property_type, suffix)
             self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
 
@@ -257,12 +269,12 @@ class SwaggerDiff(Command):
             if http_code in orig_responses:
                 self.diff_response(path, method, summary, new_responses.get(http_code), orig_responses.get(http_code), http_code)
             else:
-                self.build_response_diif(path, method, summary, DiffType.RESPONSE_HTTP_STATUS_ADD, new_responses.get(http_code), None, None, http_code)
+                self.build_response_diff(path, method, summary, DiffType.RESPONSE_HTTP_STATUS_ADD, new_responses.get(http_code), None, None, http_code)
         for http_code in orig_responses:
             if http_code not in new_responses:
-                self.build_response_diif(path, method, summary, DiffType.RESPONSE_HTTP_STATUS_DELETE, None, orig_responses.get(http_code), None, http_code)
+                self.build_response_diff(path, method, summary, DiffType.RESPONSE_HTTP_STATUS_DELETE, None, orig_responses.get(http_code), None, http_code)
 
-    def build_response_diif(self, path, method, summary, diff_type, new_response, orig_response, field_name, http_code):
+    def build_response_diff(self, path, method, summary, diff_type, new_response, orig_response, field_name, http_code):
         if diff_type == DiffType.RESPONSE_HTTP_STATUS_ADD:
             self.diff_list.append(DiffProperty(path, method, diff_type, http_code, None, None, summary, http_code))
         if diff_type == DiffType.RESPONSE_HTTP_STATUS_DELETE:
@@ -270,7 +282,7 @@ class SwaggerDiff(Command):
 
     def diff_response(self, path, method, summary, new_response, orig_response, http_code):
         if new_response.description != orig_response.description:
-            self.build_response_diif(path, method, summary, DiffType.RESPONSE_PARAMETER_MODIFY_DESC, new_response, orig_response, None, http_code)
+            self.build_response_diff(path, method, summary, DiffType.RESPONSE_PARAMETER_MODIFY_DESC, new_response, orig_response, None, http_code)
         if new_response.schema is not None:
             if new_response.schema.ref is not None:
                 self.generate_schema(path, method, summary, new_response.schema.ref, orig_response.schema.ref, PropertyType.RESPONSE)
@@ -292,6 +304,7 @@ class SwaggerDiff(Command):
     "responses": {
                     "200": {
                         "description": "OK",
+                        解析这个schema
                         "schema": {
                             "type": "array",
                             "items": {

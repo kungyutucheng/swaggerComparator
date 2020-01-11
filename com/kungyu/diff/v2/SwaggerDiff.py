@@ -172,6 +172,8 @@ class SwaggerDiff(Command):
     def diff_schema(self, path, method, summary, new_schema, orig_schema, new_name, property_type):
         if new_schema is None or orig_schema is None:
             return
+        if new_schema.type == ShowDataType.ARRAY:
+            self.diff_schema_list(path, method, summary, new_schema, orig_schema,property_type)
         if new_schema.items is not None:
             new_ref = new_schema.items.ref
             orig_ref = orig_schema.items.ref

@@ -12,6 +12,7 @@ from com.kungyu.model.v2.PathItem import PathItem
 from com.kungyu.enums.InType import InType
 from com.kungyu.model.v2.Item import Item
 from com.kungyu.model.v2.SecuritySchema import SecuritySchema
+from com.kungyu.enums.ShowDataType import ShowDataType
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -148,6 +149,8 @@ class SwaggerParser(Parser):
         schema = Schema()
         self.parser.parse_base_schema(schema, schema_json)
         schema.ref = schema_json.get('$ref')
+        if schema.ref is not None:
+            schema.type = ShowDataType.OBJECT
         schema.description = schema_json.get('description')
         schema.discriminator = schema_json.get('discriminator')
 

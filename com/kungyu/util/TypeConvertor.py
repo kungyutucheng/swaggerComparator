@@ -34,4 +34,8 @@ class TypeConvertor(object):
             return ActualDataType.DATE_TIME
         elif type == ShowDataType.STRING and format == DataFormat.PASSWORD:
             return ActualDataType.PASSWORD
+        elif type == ShowDataType.OBJECT and format is None:
+            return ActualDataType.OBJECT
+        elif type == ShowDataType.ARRAY and format is None:
+            return ActualDataType.ARRAY
         return None

@@ -18,3 +18,5 @@ class ActualDataType(Enum):
     DATE = 'date'
     DATE_TIME = 'dateTime'
     PASSWORD = 'password'
+    OBJECT = 'object'
+    ARRAY = 'array'

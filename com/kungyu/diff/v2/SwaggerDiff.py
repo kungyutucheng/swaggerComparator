@@ -135,9 +135,8 @@ class SwaggerDiff(Command):
     def diff_parameter(self, path, method, summary, new_parameter, orig_parameter):
         if new_parameter.type != orig_parameter.type or new_parameter.format != orig_parameter.format:
             self.build_parameter_diff(path, method, summary, DiffType.REQUEST_PARAMETER_MODIFY_TYPE, new_parameter, orig_parameter)
-        if new_parameter.items != orig_parameter.items:
-            # todo
-            pass
+        if new_parameter.items != orig_parameter.items and new_parameter.type == ShowDataType.ARRAY:
+            self.diff_schema_list(path, method, summary, new_parameter, orig_parameter, PropertyType.REQUEST)
         if new_parameter.required != orig_parameter.required:
             self.build_parameter_diff(path, method, summary, DiffType.REQUEST_PARAMETER_MODIFY_REQUIRED, new_parameter, orig_parameter)
         if new_parameter.description != orig_parameter.description:

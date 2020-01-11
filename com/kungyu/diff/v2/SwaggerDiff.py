@@ -203,6 +203,13 @@ class SwaggerDiff(Command):
             if new_property_name in orig_properties:
                 # 对比object类的字段属性
                 self.diff_schema(path, method, summary, new_properties.get(new_property_name), orig_properties.get(new_property_name), new_property_name, property_type)
+                # 判断必填是否一致，需要在与properties属性同一层判断，因为真正的required与properties是同一层级，如果进入上一句之后在判断，则会丢失required
+                new_schema_required = self.generate_schema_required(new_schema.required, new_property_name)
+                orig_schema_required = self.generate_schema_required(orig_schema.required, new_property_name)
+                if new_schema_required != orig_schema_required:
+                    suffix = 'schema_modify_required'
+                    diff_type = DiffType.get_diff_type(property_type, suffix)
+                    self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_property_name)
             else:
                 # 新增的字段
                 suffix = 'schema_field_add'
@@ -219,13 +226,7 @@ class SwaggerDiff(Command):
             suffix = 'schema_modify_desc'
             diff_type = DiffType.get_diff_type(property_type, suffix)
             self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
-        # 判断必填是否一致
-        new_schema_required = self.generate_schema_required(new_schema.required, new_name)
-        orig_schema_required = self.generate_schema_required(orig_schema.required, new_name)
-        if new_schema_required != orig_schema_required:
-            suffix = 'schema_modify_required'
-            diff_type = DiffType.get_diff_type(property_type, suffix)
-            self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
+
 
     def generate_ref(self, ref_name):
         if ref_name is None:

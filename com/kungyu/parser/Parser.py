@@ -156,7 +156,12 @@ class Parser(object):
             return
         self.parse_base_base_parameter(schema, schema_json)
         schema.title = schema_json.get('title')
-        schema.read_only = schema_json.get('readOnly')
+        readonly = schema_json.get('readOnly')
+        if readonly is None:
+            # 默认值
+            schema.read_only = False
+        else:
+            schema.read_only = readonly
         schema.xml = self.parse_xml(schema_json.get('xml'))
         schema.external_docs = self.parse_external_docs(schema_json.get('externalDocs'))
         schema.example = schema_json.get('example')

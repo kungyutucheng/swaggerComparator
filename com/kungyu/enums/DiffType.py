@@ -33,6 +33,7 @@ class DiffType(Enum):
     REQUEST_SCHEMA_MODIFY_DESC = '修改入参定义'
     REQUEST_SCHEMA_MODIFY_REQUIRED = '修改入参必填'
     REQUEST_SCHEMA_MODIFY_ITEMS_TYPE = '修改入参列表类型'
+    REQUEST_SCHEMA_MODIFY_EXAMPLE = '修改入参例子'
 
     RESPONSE_HTTP_STATUS_ADD = '新增响应状态码'
     RESPONSE_HTTP_STATUS_DELETE = '删除响应状态码'
@@ -50,6 +51,7 @@ class DiffType(Enum):
     RESPONSE_SCHEMA_MODIFY_DESC = '修改出参定义'
     RESPONSE_SCHEMA_MODIFY_REQUIRED = '修改出参必填'
     RESPONSE_SCHEMA_MODIFY_ITEMS_TYPE = '修改出参列表类型'
+    RESPONSE_SCHEMA_MODIFY_EXAMPLE = '修改出参例子'
 
     @staticmethod
     def get_diff_type(prefix, suffix):

@@ -226,6 +226,11 @@ class SwaggerDiff(Command):
             suffix = 'schema_modify_desc'
             diff_type = DiffType.get_diff_type(property_type, suffix)
             self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
+        # 判断例子是否一致
+        if new_schema.example != orig_schema.example:
+            suffix = 'schema_modify_example'
+            diff_type = DiffType.get_diff_type(property_type, suffix)
+            self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
 
 
     def generate_ref(self, ref_name):
@@ -259,6 +264,8 @@ class SwaggerDiff(Command):
             self.diff_list.append(DiffProperty(path, method, diff_type, self.generate_schema_required(new_schema.required, field_name), self.generate_schema_required(orig_schema.required, field_name), field_name, summary))
         if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_ITEMS_TYPE or diff_type == DiffType.RESPONSE_SCHEMA_MODIFY_ITEMS_TYPE:
             self.diff_list.append(DiffProperty(path, method, diff_type, TypeConvertor.convertToActualDataType(new_schema.type, new_schema.format), TypeConvertor.convertToActualDataType(orig_schema.type, orig_schema.format), None, summary))
+        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_EXAMPLE or diff_type == DiffType.RESPONSE_SCHEMA_MODIFY_EXAMPLE:
+            self.diff_list.append(DiffProperty(path, method, diff_type, new_schema.example, orig_schema.example, field_name, summary))
 
     def generate_schema_required(self, required_list, name):
         if required_list is None:

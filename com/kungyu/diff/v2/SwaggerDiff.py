@@ -141,6 +141,8 @@ class SwaggerDiff(Command):
             self.build_parameter_diff(path, method, summary, DiffType.REQUEST_PARAMETER_MODIFY_REQUIRED, new_parameter, orig_parameter)
         if new_parameter.description != orig_parameter.description:
             self.build_parameter_diff(path, method, summary, DiffType.REQUEST_PARAMETER_MODIFY_DESC, new_parameter, orig_parameter)
+        if new_parameter.enum != orig_parameter.enum:
+            self.build_parameter_diff(path, method, summary, DiffType.REQUEST_SCHEMA_MODIFY_ALLOW_VALUES, new_parameter, orig_parameter)
         if new_parameter.schema != orig_parameter.schema:
             self.generate_schema(path, method, summary, new_parameter.schema.ref, orig_parameter.schema.ref, PropertyType.REQUEST)
 
@@ -164,6 +166,8 @@ class SwaggerDiff(Command):
             self.diff_list.append(DiffProperty(path, method, diff_type, None, orig_parameter.name, orig_parameter.name, summary))
         if diff_type == DiffType.REQUEST_PARAMETER_MODIFY_REF:
             self.diff_list.append(DiffProperty(path, method, diff_type, new_parameter.schema.ref, orig_parameter.schema.ref, new_parameter.name, summary))
+        if diff_type == DiffType.REQUEST_SCHEMA_MODIFY_ALLOW_VALUES:
+            self.diff_list.append(DiffProperty(path, method, diff_type, new_parameter.enum, orig_parameter.enum, new_parameter.name, summary))
 
     """
     

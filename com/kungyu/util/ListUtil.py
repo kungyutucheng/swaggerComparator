@@ -9,5 +9,5 @@ class ListUtil(object):
 
     @staticmethod
     def joinList(list, sep):
-        str = reduce(lambda v1, v2: v1 + v2, map(lambda v: v + sep, list))
-        return str[:len(str) - 1]
+        result = reduce(lambda v1, v2: str(v1) + str(v2), map(lambda v: str(v) + sep, list))
+        return result[:len(result) - 1]

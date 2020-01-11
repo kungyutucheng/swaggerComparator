@@ -188,7 +188,7 @@ class SwaggerDiff(Command):
             self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
         # 判断可选值是否一致
         if new_schema.enum != orig_schema.enum:
-            suffix = 'schema_modify_enum'
+            suffix = 'schema_modify_allow_values'
             diff_type = DiffType.get_diff_type(property_type, suffix)
             self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
         # 判断只读属性是否一致
@@ -216,7 +216,7 @@ class SwaggerDiff(Command):
                 self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, orig_property_name)
         # 判断描述是否一致
         if new_schema.description != orig_schema.description:
-            suffix = 'schema_modify_description'
+            suffix = 'schema_modify_desc'
             diff_type = DiffType.get_diff_type(property_type, suffix)
             self.build_schema_diff(path, method, summary, diff_type, new_schema, orig_schema, new_name)
         # 判断必填是否一致

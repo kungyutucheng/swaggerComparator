@@ -52,6 +52,9 @@ class HtmlGenerator(object):
         </tr>
         """ % (new_url, orig_url)
 
+        # 排序
+        diff_property_list = sorted(diff_property_list, key=lambda diff_property : diff_property.path)
+
         index = 1
         for diff_property in diff_property_list:
             # 处理None

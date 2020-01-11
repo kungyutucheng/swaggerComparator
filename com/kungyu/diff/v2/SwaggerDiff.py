@@ -10,6 +10,7 @@ from com.kungyu.model.DiffProperty import DiffProperty
 from com.kungyu.util.TypeConvertor import TypeConvertor
 from com.kungyu.enums.PropertyType import PropertyType
 from com.kungyu.enums.ShowDataType import ShowDataType
+from com.kungyu.model.v2.Schema import Schema
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -344,4 +345,8 @@ class SwaggerDiff(Command):
         if new_items.type != orig_items.type or new_items.format != orig_items.format:
             suffix = 'schema_modify_items_type'
         if suffix:
-            self.build_schema_diff(path, method, summary, DiffType.get_diff_type(property_type, suffix), new_items, orig_items, new_schema.name)
+            if type(new_schema) == Schema:
+                self.build_schema_diff(path, method, summary, DiffType.get_diff_type(property_type, suffix), new_items,
+                                       orig_items, None)
+            else:
+                self.build_schema_diff(path, method, summary, DiffType.get_diff_type(property_type, suffix), new_items, orig_items, new_schema.name)

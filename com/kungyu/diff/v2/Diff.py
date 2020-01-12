@@ -2,11 +2,13 @@
 import sys
 import requests
 import json
-from com.kungyu.diff.Command import Command
-from com.kungyu.util.SystemUtil import SystemUtil
-from com.kungyu.parser.SwaggerParser import SwaggerParser
-from com.kungyu.parser.OpenApiParser import OpenApiParser
+sys.path.append('..')
+from diff.Command import Command
+from util.SystemUtil import SystemUtil
+from parser.SwaggerParser import SwaggerParser
+from parser.OpenApiParser import OpenApiParser
 from SwaggerDiff import SwaggerDiff
+
 
 reload(sys)
 sys.setdefaultencoding('utf8')

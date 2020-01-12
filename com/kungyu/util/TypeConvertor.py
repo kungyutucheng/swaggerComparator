@@ -1,8 +1,9 @@
 # -*- coding: UTF-8 -*-
 import sys
-from com.kungyu.enums.ActualDataType import ActualDataType
-from com.kungyu.enums.DataFormat import DataFormat
-from com.kungyu.enums.ShowDataType import ShowDataType
+sys.path.append('..')
+from enums.ActualDataType import ActualDataType
+from enums.DataFormat import DataFormat
+from enums.ShowDataType import ShowDataType
 
 reload(sys)
 sys.setdefaultencoding('utf8')

@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import sys
-from com.kungyu.model.base.Response import Response
+sys.path.append('..')
+from model.base.Response import Response
 
 reload(sys)
 sys.setdefaultencoding('utf8')

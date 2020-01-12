@@ -1,14 +1,15 @@
 # -*- coding: UTF-8 -*-
 import sys
 
-from com.kungyu.model.common.Contact import Contact
-from com.kungyu.model.common.Info import Info
-from com.kungyu.model.common.ExternalDocumentation import ExternalDocumentation
-from com.kungyu.model.common.Tag import Tag
-from com.kungyu.model.common.License import License
-from com.kungyu.model.base.Schema import Schema
-from com.kungyu.model.common.Xml import Xml
-from com.kungyu.model.base.BaseParameter import BaseParameter
+sys.path.append('..')
+from model.common.Contact import Contact
+from model.common.Info import Info
+from model.common.ExternalDocumentation import ExternalDocumentation
+from model.common.Tag import Tag
+from model.common.License import License
+from model.base.Schema import Schema
+from model.common.Xml import Xml
+from model.base.BaseParameter import BaseParameter
 
 reload(sys)
 sys.setdefaultencoding('utf8')

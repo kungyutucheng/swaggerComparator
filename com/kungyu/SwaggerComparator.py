@@ -1,13 +1,7 @@
 #-*- coding: UTF-8 -*-
-import os
 import sys
-import requests
-import json
-import platform
-import getpass
 import getopt
-from com.kungyu.diff.Parser import Parser
-from com.kungyu.diff.Diff import Diff
+from diff.v2.Diff import Diff
 from util.FileLoader import FileLoader
 
 
@@ -20,6 +14,9 @@ if __name__ == '__main__':
 
     # 第一个参数为脚本名称
     argvs = sys.argv[1:]
+    if len(argvs) == 0:
+        print('error command')
+        exit(2)
     command = argvs[0]
 
     help_doc_path = '../../resources/doc/'

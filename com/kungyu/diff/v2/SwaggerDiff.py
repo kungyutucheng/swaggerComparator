@@ -2,15 +2,16 @@
 import sys
 import os
 import webbrowser
-from com.kungyu.diff.Command import Command
-from com.kungyu.util.SystemUtil import SystemUtil
-from com.kungyu.util.HtmlGenerator import HtmlGenerator
-from com.kungyu.enums.DiffType import DiffType
-from com.kungyu.model.DiffProperty import DiffProperty
-from com.kungyu.util.TypeConvertor import TypeConvertor
-from com.kungyu.enums.PropertyType import PropertyType
-from com.kungyu.enums.ShowDataType import ShowDataType
-from com.kungyu.model.v2.Schema import Schema
+sys.path.append('..')
+from diff.Command import Command
+from util.SystemUtil import SystemUtil
+from util.HtmlGenerator import HtmlGenerator
+from enums.DiffType import DiffType
+from model.DiffProperty import DiffProperty
+from util.TypeConvertor import TypeConvertor
+from enums.PropertyType import PropertyType
+from enums.ShowDataType import ShowDataType
+from model.v2.Schema import Schema
 
 reload(sys)
 sys.setdefaultencoding('utf8')

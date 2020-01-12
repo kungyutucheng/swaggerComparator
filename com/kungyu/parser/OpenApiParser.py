@@ -3,23 +3,24 @@ import sys
 import requests
 import json
 from Parser import Parser
-from com.kungyu.model.v3.OpenApi import OpenApi
-from com.kungyu.model.v3.Schema import Schema
-from com.kungyu.model.v3.Server import Server
-from com.kungyu.model.v3.ServerValue import ServerValue
-from com.kungyu.model.v3.Response import Response
-from com.kungyu.model.v3.RequestBody import RequestBody
-from com.kungyu.model.v3.Parameter import Parameter
-from com.kungyu.model.v3.Operation import Operation
-from com.kungyu.model.v3.PathItem import PathItem
-from com.kungyu.model.v3.Component import Component
-from com.kungyu.model.v3.Discriminator import Discriminator
-from com.kungyu.model.v3.Encoding import Encoding
-from com.kungyu.model.v3.Example import Example
-from com.kungyu.model.v3.Link import Link
-from com.kungyu.model.v3.MediaType import MediaType
-from com.kungyu.model.v3.SecuritySchema import SecuritySchema
-from com.kungyu.model.v3.OAuthFlow import OAuthFlow
+sys.path.append('..')
+from model.v3.OpenApi import OpenApi
+from model.v3.Schema import Schema
+from model.v3.Server import Server
+from model.v3.ServerValue import ServerValue
+from model.v3.Response import Response
+from model.v3.RequestBody import RequestBody
+from model.v3.Parameter import Parameter
+from model.v3.Operation import Operation
+from model.v3.PathItem import PathItem
+from model.v3.Component import Component
+from model.v3.Discriminator import Discriminator
+from model.v3.Encoding import Encoding
+from model.v3.Example import Example
+from model.v3.Link import Link
+from model.v3.MediaType import MediaType
+from model.v3.SecuritySchema import SecuritySchema
+from model.v3.OAuthFlow import OAuthFlow
 
 
 reload(sys)

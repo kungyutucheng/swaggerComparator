@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import sys
-from com.kungyu.model.base.Operation import Operation
+sys.path.append('..')
+from model.base.Operation import Operation
 
 reload(sys)
 sys.setdefaultencoding('utf8')

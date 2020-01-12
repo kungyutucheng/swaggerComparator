@@ -3,16 +3,17 @@ import sys
 import requests
 import json
 from Parser import Parser
-from com.kungyu.model.v2.Swagger import Swagger
-from com.kungyu.model.v2.Schema import Schema
-from com.kungyu.model.v2.Response import Response
-from com.kungyu.model.v2.Parameter import Parameter
-from com.kungyu.model.v2.Operation import Operation
-from com.kungyu.model.v2.PathItem import PathItem
-from com.kungyu.enums.InType import InType
-from com.kungyu.model.v2.Item import Item
-from com.kungyu.model.v2.SecuritySchema import SecuritySchema
-from com.kungyu.enums.ShowDataType import ShowDataType
+sys.path.append('..')
+from model.v2.Swagger import Swagger
+from model.v2.Schema import Schema
+from model.v2.Response import Response
+from model.v2.Parameter import Parameter
+from model.v2.Operation import Operation
+from model.v2.PathItem import PathItem
+from enums.InType import InType
+from model.v2.Item import Item
+from model.v2.SecuritySchema import SecuritySchema
+from enums.ShowDataType import ShowDataType
 
 reload(sys)
 sys.setdefaultencoding('utf8')

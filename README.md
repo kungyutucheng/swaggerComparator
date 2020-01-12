@@ -62,7 +62,7 @@ public void addMethod() {
 ```
 
 ###### 旧有api删除method
-![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-delet-method.jpg)
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-delete-method.jpg)
 
 9002:
 ```
@@ -205,5 +205,218 @@ public Integer modifyMethodResponseBaseType() {
 @PostMapping(value = "/modify-method-response-base-type")
 public String modifyMethodResponseBaseType() {
     return UUID.randomUUID().toString();
+}
+```
+
+###### 修改响应：list中的类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-list-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：list中的类型")
+@PostMapping(value = "/modify-method-response-list-type")
+public List<Integer> modifyMethodResponseListType() {
+    return Arrays.asList(1);
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：list中的类型")
+@PostMapping(value = "/modify-method-response-list-type")
+public List<String> modifyMethodResponseListType() {
+    return Arrays.asList(UUID.randomUUID().toString());
+}
+```
+
+###### 修改响应：set中的类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-set-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：set中的类型")
+@PostMapping(value = "/modify-method-response-set-type")
+public Set<Integer> modifyMethodResponseSetType() {
+    Set<Integer> set = new HashSet<>();
+    return set;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：set中的类型")
+@PostMapping(value = "/modify-method-response-set-type")
+public Set<String> modifyMethodResponseSetType() {
+    Set<String> set = new HashSet<>();
+    return set;
+}
+```
+
+###### 修改响应：集合类型-基本类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-collection-to-base.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：集合类型-基本类型")
+@PostMapping(value = "/modify-method-response-collection-to-base")
+public List<Integer> modifyMethodResponseCollectionToBase() {
+    List<Integer> list = Arrays.asList(1);
+    return list;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：集合类型-基本类型")
+@PostMapping(value = "/modify-method-response-collection-to-base")
+public String modifyMethodResponseCollectionToBase() {
+    return UUID.randomUUID().toString();
+}
+```
+
+###### 修改响应：对象类型中添加字段
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-object-add-field.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中添加字段")
+@PostMapping(value = "/modify-method-response-object-add-field")
+public AddFieldResponse modifyMethodResponseObjectAddField() {
+    return new AddFieldResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中添加字段")
+@PostMapping(value = "/modify-method-response-object-add-field")
+public AddFieldResponse modifyMethodResponseObjectAddField() {
+    return new AddFieldResponse();
+}
+```
+
+###### 修改响应：对象类型中删除字段
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-object-delete-field.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中删除字段")
+@PostMapping(value = "/modify-method-response-object-delete-field")
+public DeleteFieldResponse modifyMethodResponseObjectDeleteField() {
+    return new DeleteFieldResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中删除字段")
+@PostMapping(value = "/modify-method-response-object-delete-field")
+public DeleteFieldResponse modifyMethodResponseObjectDeleteField() {
+    return new DeleteFieldResponse();
+}
+```
+
+###### 修改响应：对象类型中修改字段定义
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-object-modify-field-value.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段定义")
+@PostMapping(value = "/modify-method-response-object-modify-field-value")
+public ModifyFieldValueResponse modifyMethodResponseObjectModifyFieldValue() {
+    return new ModifyFieldValueResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段定义")
+@PostMapping(value = "/modify-method-response-object-modify-field-value")
+public ModifyFieldValueResponse modifyMethodResponseObjectModifyFieldValue() {
+    return new ModifyFieldValueResponse();
+}
+```
+
+###### 修改响应：对象类型中修改字段类型：基本-基本
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-object-modify-field-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段类型：基本-基本")
+@PostMapping(value = "/modify-method-response-object-modify-field-type")
+public ModifyFieldTypeResponse modifyMethodResponseObjectModifyFieldType() {
+    return new ModifyFieldTypeResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段类型：基本-基本")
+@PostMapping(value = "/modify-method-response-object-modify-field-type")
+public ModifyFieldTypeResponse modifyMethodResponseObjectModifyFieldType() {
+    return new ModifyFieldTypeResponse();
+}
+```
+
+###### 修改响应：对象类型中修改字段允许输入的值范围
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-object-modify-field-allow-values.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段允许输入的值范围")
+@PostMapping(value = "/modify-method-response-object-modify-field-allow-values")
+public ModifyFieldAllowValuesResponse modifyMethodResponseObjectModifyFieldAllowValue() {
+    return new ModifyFieldAllowValuesResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段允许输入的值范围")
+@PostMapping(value = "/modify-method-response-object-modify-field-allow-values")
+public ModifyFieldAllowValuesResponse modifyMethodResponseObjectModifyFieldAllowValues() {
+    return new ModifyFieldAllowValuesResponse();
+}
+```
+
+###### 修改响应：对象类型中修改字段必填属性
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-object-modify-field-required.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段必填属性")
+@PostMapping(value = "/modify-method-response-object-modify-field-required")
+public ModifyFieldRequiredResponse modifyMethodResponseObjectModifyFieldRequired() {
+    return new ModifyFieldRequiredResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段必填属性")
+@PostMapping(value = "/modify-method-response-object-modify-field-required")
+public ModifyFieldRequiredResponse modifyMethodResponseObjectModifyFieldRequired() {
+    return new ModifyFieldRequiredResponse();
+}
+```
+
+###### 修改响应：对象类型中修改字段输出例子
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-object-modify-field-example.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段输出例子")
+@PostMapping(value = "/modify-method-response-object-modify-field-example")
+public ModifyFieldExampleResponse modifyMethodResponseObjectModifyFieldExample() {
+    return new ModifyFieldExampleResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段输出例子")
+@PostMapping(value = "/modify-method-response-object-modify-field-example")
+public ModifyFieldExampleResponse modifyMethodResponseObjectModifyFieldExample() {
+    return new ModifyFieldExampleResponse();
 }
 ```

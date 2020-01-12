@@ -3,6 +3,20 @@
 ## 简介
 众所周知，swagger生成的接口数据是没有修订记录的，只会显示最终修改完成的版本，利用此项目，再搭配俩个不同接口版本的运行环境，即可生成前后俩个版本的接口修订记录
 
+## 版本
+
+python：2.7
+swagger：2.7
+
+## 使用方法
+1. 安装python
+2. 进入${projectDir}/com/kungyu/目录
+3. 输入命令
+```
+SwaggerComparator.py diff -n http://localhost:9003/v2/api-docs -o http://localhost:9002/v2/api-docs
+```
+数据对比完毕之后，浏览器便会打开对比结果的html文件
+
 ## 原理
 ![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-theory.png)
 

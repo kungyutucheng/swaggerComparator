@@ -1,7 +1,7 @@
 # swaggerComparator
 
 ## 简介
-众所周知，swagger生成的接口数据是没有修订记录的，只会显示最终修改完成的版本，利用此项目，再搭配俩个不同接口版本的运行环境，即可生成前后俩个版本的接口修订记录
+一款swagger修改记录生成小工具，众所周知，swagger生成的接口数据是没有修订记录的，只会显示最终修改完成的版本，利用此项目，再搭配俩个不同接口版本的运行环境，即可生成前后俩个版本的接口修订记录
 
 ## 版本
 
@@ -13,16 +13,28 @@ swagger：2.7
 2. 进入${projectDir}/com/kungyu/目录
 3. 输入命令
 ```
-SwaggerComparator.py diff -n http://localhost:9003/v2/api-docs -o http://localhost:9002/v2/api-docs
+python SwaggerComparator.py diff -n http://localhost:9003/v2/api-docs -o http://localhost:9002/v2/api-docs
 ```
 数据对比完毕之后，浏览器便会打开对比结果的html文件
+4. 参数讲解
+-n：new，新版本swaggge的url（具体路径可打开swagger-ui.html查看）
+-o：original，旧版本的swagger的url
+-d：指定生成的html文件的存放路径，默认值为：
+
+linux：/usr/local/username/swagger-html/swagger-diff.html（未测试）
+
+mac：/Users/username/swagger-html/swagger-diff.html
+
+windows：C:\\Users\username\swagger-html\swagger-diff.html（未测试）
+
+-f：文件名称，默认值swagger-diff.html
 
 ## 原理
 ![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-theory.png)
 
 ## json结构
 
-### swagger
+### swagger2.0
 
 #### 结构分析图
 ![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger2.x.png)
@@ -1341,3 +1353,7 @@ public class ModifyFieldMultiRefRequest {
 
 }
 ```
+
+### openapi
+
+目前只完成解析成实体的代码，对比代码待补充

@@ -6,9 +6,11 @@
 ## 版本
 
 python：2.7
+
 swagger：2.7
 
 ## 使用方法
+
 1. 安装python
 2. 进入${projectDir}/com/kungyu/目录
 3. 输入命令
@@ -16,9 +18,13 @@ swagger：2.7
 python SwaggerComparator.py diff -n http://localhost:9003/v2/api-docs -o http://localhost:9002/v2/api-docs
 ```
 数据对比完毕之后，浏览器便会打开对比结果的html文件
+
 4. 参数讲解
+
 -n：new，新版本swaggge的url（具体路径可打开swagger-ui.html查看）
+
 -o：original，旧版本的swagger的url
+
 -d：指定生成的html文件的存放路径，默认值为：
 
 linux：/usr/local/username/swagger-html/swagger-diff.html（未测试）

@@ -10,6 +10,11 @@
 
 ### swagger
 
+#### 结构分析图
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger2.x.png)
+
+#### 对比结果示例
+
 ###### 修改host
 
 ![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-host.jpg)
@@ -285,6 +290,13 @@ public AddFieldResponse modifyMethodResponseObjectAddField() {
     return new AddFieldResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class AddFieldResponse {
+
+}
+```
 
 9003:
 ```
@@ -292,6 +304,16 @@ public AddFieldResponse modifyMethodResponseObjectAddField() {
 @PostMapping(value = "/modify-method-response-object-add-field")
 public AddFieldResponse modifyMethodResponseObjectAddField() {
     return new AddFieldResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class AddFieldResponse {
+
+    @ApiModelProperty(value = "addField")
+    private Integer addField;
+
 }
 ```
 
@@ -306,6 +328,16 @@ public DeleteFieldResponse modifyMethodResponseObjectDeleteField() {
     return new DeleteFieldResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class DeleteFieldResponse {
+
+    @ApiModelProperty(value = "deleteField")
+    private Integer deleteField;
+
+}
+```
 
 9003:
 ```
@@ -313,6 +345,12 @@ public DeleteFieldResponse modifyMethodResponseObjectDeleteField() {
 @PostMapping(value = "/modify-method-response-object-delete-field")
 public DeleteFieldResponse modifyMethodResponseObjectDeleteField() {
     return new DeleteFieldResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class DeleteFieldResponse {
 }
 ```
 
@@ -327,6 +365,15 @@ public ModifyFieldValueResponse modifyMethodResponseObjectModifyFieldValue() {
     return new ModifyFieldValueResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldValueResponse {
+
+    @ApiModelProperty(value = "修改前字段描述")
+    private Integer filed;
+}
+```
 
 9003:
 ```
@@ -334,6 +381,15 @@ public ModifyFieldValueResponse modifyMethodResponseObjectModifyFieldValue() {
 @PostMapping(value = "/modify-method-response-object-modify-field-value")
 public ModifyFieldValueResponse modifyMethodResponseObjectModifyFieldValue() {
     return new ModifyFieldValueResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldValueResponse {
+
+    @ApiModelProperty(value = "修改后字段描述")
+    private Integer filed;
 }
 ```
 
@@ -348,6 +404,15 @@ public ModifyFieldTypeResponse modifyMethodResponseObjectModifyFieldType() {
     return new ModifyFieldTypeResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldTypeResponse {
+
+    @ApiModelProperty(value = "修改类型字段")
+    private Integer filed;
+}
+```
 
 9003:
 ```
@@ -355,6 +420,15 @@ public ModifyFieldTypeResponse modifyMethodResponseObjectModifyFieldType() {
 @PostMapping(value = "/modify-method-response-object-modify-field-type")
 public ModifyFieldTypeResponse modifyMethodResponseObjectModifyFieldType() {
     return new ModifyFieldTypeResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldTypeResponse {
+
+    @ApiModelProperty(value = "修改类型字段")
+    private String filed;
 }
 ```
 
@@ -369,6 +443,15 @@ public ModifyFieldAllowValuesResponse modifyMethodResponseObjectModifyFieldAllow
     return new ModifyFieldAllowValuesResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldAllowValuesResponse {
+
+    @ApiModelProperty(value = "修改字段允许值",allowableValues = "1,2")
+    private Integer filed;
+}
+```
 
 9003:
 ```
@@ -376,6 +459,15 @@ public ModifyFieldAllowValuesResponse modifyMethodResponseObjectModifyFieldAllow
 @PostMapping(value = "/modify-method-response-object-modify-field-allow-values")
 public ModifyFieldAllowValuesResponse modifyMethodResponseObjectModifyFieldAllowValues() {
     return new ModifyFieldAllowValuesResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldAllowValuesResponse {
+
+    @ApiModelProperty(value = "修改字段允许值",allowableValues = "1,2,3")
+    private Integer filed;
 }
 ```
 
@@ -390,6 +482,15 @@ public ModifyFieldRequiredResponse modifyMethodResponseObjectModifyFieldRequired
     return new ModifyFieldRequiredResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldRequiredResponse {
+
+    @ApiModelProperty(value = "修改字段必填",required = true)
+    private Integer filed;
+}
+```
 
 9003:
 ```
@@ -397,6 +498,15 @@ public ModifyFieldRequiredResponse modifyMethodResponseObjectModifyFieldRequired
 @PostMapping(value = "/modify-method-response-object-modify-field-required")
 public ModifyFieldRequiredResponse modifyMethodResponseObjectModifyFieldRequired() {
     return new ModifyFieldRequiredResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldRequiredResponse {
+
+    @ApiModelProperty(value = "修改字段必填")
+    private Integer filed;
 }
 ```
 
@@ -411,6 +521,15 @@ public ModifyFieldExampleResponse modifyMethodResponseObjectModifyFieldExample()
     return new ModifyFieldExampleResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldExampleResponse {
+
+    @ApiModelProperty(value = "修改出参例子",example = "1")
+    private Integer filed;
+}
+```
 
 9003:
 ```
@@ -418,6 +537,15 @@ public ModifyFieldExampleResponse modifyMethodResponseObjectModifyFieldExample()
 @PostMapping(value = "/modify-method-response-object-modify-field-example")
 public ModifyFieldExampleResponse modifyMethodResponseObjectModifyFieldExample() {
     return new ModifyFieldExampleResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldExampleResponse {
+
+    @ApiModelProperty(value = "修改出参例子",example = "2")
+    private Integer filed;
 }
 ```
 
@@ -432,6 +560,15 @@ public ModifyFieldReadonlyResponse modifyMethodResponseObjectModifyFieldReadonly
     return new ModifyFieldReadonlyResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldReadonlyResponse {
+
+    @ApiModelProperty(value = "修改字段只读属性")
+    private Integer filed;
+}
+```
 
 9003:
 ```
@@ -439,6 +576,15 @@ public ModifyFieldReadonlyResponse modifyMethodResponseObjectModifyFieldReadonly
 @PostMapping(value = "/modify-method-response-object-modify-field-readonly")
 public ModifyFieldReadonlyResponse modifyMethodResponseObjectModifyFieldReadonly() {
     return new ModifyFieldReadonlyResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldReadonlyResponse {
+
+    @ApiModelProperty(value = "修改字段只读属性",readOnly = true)
+    private Integer filed;
 }
 ```
 
@@ -453,6 +599,15 @@ public ModifyObjectDescResponse modifyMethodResponseModifyObjectDesc() {
     return new ModifyObjectDescResponse();
 }
 ```
+```
+@ApiModel(description = "修改前实体描述")
+@Data
+public class ModifyObjectDescResponse {
+
+    @ApiModelProperty(value = "字段")
+    private Integer filed;
+}
+```
 
 9003:
 ```
@@ -460,6 +615,15 @@ public ModifyObjectDescResponse modifyMethodResponseModifyObjectDesc() {
 @PostMapping(value = "/modify-method-response-modify-object-desc")
 public ModifyObjectDescResponse modifyMethodResponseModifyObjectDesc() {
     return new ModifyObjectDescResponse();
+}
+```
+```
+@ApiModel(description = "修改后实体描述")
+@Data
+public class ModifyObjectDescResponse {
+
+    @ApiModelProperty(value = "字段")
+    private Integer filed;
 }
 ```
 
@@ -474,6 +638,15 @@ public ModifyFieldCollectionTypeResponse modifyMethodResponseModifyObjectFieldCo
     return new ModifyFieldCollectionTypeResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldCollectionTypeResponse {
+
+    @ApiModelProperty(value = "集合字段")
+    private List<String> filed;
+}
+```
 
 9003:
 ```
@@ -481,6 +654,15 @@ public ModifyFieldCollectionTypeResponse modifyMethodResponseModifyObjectFieldCo
 @PostMapping(value = "/modify-method-response-modify-object-field-collection-type")
 public ModifyFieldCollectionTypeResponse modifyMethodResponseModifyObjectFieldCollectionType() {
     return new ModifyFieldCollectionTypeResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCollectionTypeResponse {
+
+    @ApiModelProperty(value = "集合字段")
+    private List<Integer> filed;
 }
 ```
 
@@ -495,6 +677,15 @@ public ModifyFieldObjectToBaseResponse modifyMethodResponseModifyObjectFieldSubO
     return new ModifyFieldObjectToBaseResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldObjectToBaseResponse {
+
+    @ApiModelProperty(value = "集合字段")
+    private FieldObject fieldObject;
+}
+```
 
 9003:
 ```
@@ -502,6 +693,15 @@ public ModifyFieldObjectToBaseResponse modifyMethodResponseModifyObjectFieldSubO
 @PostMapping(value = "/modify-method-response-modify-object-field-subObject-to-base")
 public ModifyFieldObjectToBaseResponse modifyMethodResponseModifyObjectFieldSubObjectToBase() {
     return new ModifyFieldObjectToBaseResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldObjectToBaseResponse {
+
+    @ApiModelProperty(value = "基础字段")
+    private Integer fieldObject;
 }
 ```
 
@@ -516,6 +716,15 @@ public ModifyFieldCollectionToBaseResponse modifyMethodResponseModifyObjectField
     return new ModifyFieldCollectionToBaseResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldCollectionToBaseResponse {
+
+    @ApiModelProperty(value = "集合字段")
+    private List<String> fieldObject;
+}
+```
 
 9003:
 ```
@@ -523,6 +732,15 @@ public ModifyFieldCollectionToBaseResponse modifyMethodResponseModifyObjectField
 @PostMapping(value = "/modify-method-response-modify-object-field-collection-to-base")
 public ModifyFieldCollectionToBaseResponse modifyMethodResponseModifyObjectFieldCollectionToBase() {
     return new ModifyFieldCollectionToBaseResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCollectionToBaseResponse {
+
+    @ApiModelProperty(value = "基本字段")
+    private String fieldObject;
 }
 ```
 
@@ -537,6 +755,18 @@ public ModifyFieldCircleResponse modifyMethodResponseModifyObjectChildCircle() {
     return new ModifyFieldCircleResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldCircleResponse {
+
+    @ApiModelProperty(value = "普通字段")
+    private String field;
+
+    @ApiModelProperty(value = "循环字段")
+    private ModifyFieldCircleResponse childCircleResponse;
+}
+```
 
 9003:
 ```
@@ -544,6 +774,18 @@ public ModifyFieldCircleResponse modifyMethodResponseModifyObjectChildCircle() {
 @PostMapping(value = "/modify-method-response-modify-object-child-circle")
 public ModifyFieldCircleResponse modifyMethodResponseModifyObjectChildCircle() {
     return new ModifyFieldCircleResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCircleResponse {
+
+    @ApiModelProperty(value = "普通字段")
+    private Integer field;
+
+    @ApiModelProperty(value = "循环字段")
+    private ModifyFieldCircleResponse childCircleResponse;
 }
 ```
 
@@ -558,6 +800,19 @@ public ModifyFieldMultiRefResponse modifyMethodResponseModifyObjectMultiRef() {
     return new ModifyFieldMultiRefResponse();
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldMultiRefResponse {
+
+    @ApiModelProperty(value = "普通字段")
+    private String field;
+
+    @ApiModelProperty(value = "第一层引用")
+    private FirstLevelRef firstLevelRef;
+
+}
+```
 
 9003:
 ```
@@ -565,6 +820,19 @@ public ModifyFieldMultiRefResponse modifyMethodResponseModifyObjectMultiRef() {
 @PostMapping(value = "/modify-method-response-modify-object-multi-ref")
 public ModifyFieldMultiRefResponse modifyMethodResponseModifyObjectMultiRef() {
     return new ModifyFieldMultiRefResponse();
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldMultiRefResponse {
+
+    @ApiModelProperty(value = "普通字段")
+    private Integer field;
+
+    @ApiModelProperty(value = "第一层引用")
+    private FirstLevelRef firstLevelRef;
+
 }
 ```
 
@@ -655,12 +923,27 @@ public void modifyMethodRequestSetType(Set<String> req) {
 public void modifyMethodRequestObjectAddField(AddFieldRequest req) {
 }
 ```
+```
+@ApiModel
+@Data
+public class AddFieldRequest {
+}
+```
 
 9003:
 ```
 @ApiOperation(value = "修改请求：对象类型中添加字段")
 @PostMapping(value = "/modify-method-request-object-add-field")
 public void modifyMethodRequestObjectAddField(AddFieldRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class AddFieldRequest {
+
+    @ApiModelProperty(value = "addField")
+    private Integer addField;
 }
 ```
 
@@ -674,12 +957,27 @@ public void modifyMethodRequestObjectAddField(AddFieldRequest req) {
 public void modifyMethodRequestObjectDeleteField(DeleteFieldRequest request) {
 }
 ```
+```
+@ApiModel
+@Data
+public class DeleteFieldRequest {
+
+    @ApiModelProperty(value = "deleteField")
+    private Integer deleteField;
+}
+```
 
 9003:
 ```
 @ApiOperation(value = "修改请求：对象类型中删除字段")
 @PostMapping(value = "/modify-method-request-object-delete-field")
 public void modifyMethodRequestObjectDeleteField(DeleteFieldRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class DeleteFieldRequest {
 }
 ```
 
@@ -693,11 +991,339 @@ public void modifyMethodRequestObjectDeleteField(DeleteFieldRequest req) {
 public void modifyMethodRequestObjectModifyFieldValue(ModifyFieldValueRequest req) {
 }
 ```
+```
+@ApiModel
+@Data
+public class ModifyFieldValueRequest {
+
+    @ApiModelProperty(value = "修改前字段描述")
+    private Integer field;
+}
+```
 
 9003:
 ```
 @ApiOperation(value = "修改请求：对象类型中修改字段定义")
 @PostMapping(value = "/modify-method-request-object-modify-field-value")
 public void modifyMethodRequestObjectModifyFieldValue(ModifyFieldValueRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldValueRequest {
+
+    @ApiModelProperty(value = "修改后字段描述")
+    private Integer field;
+}
+```
+
+###### 修改请求：对象类型中修改字段类型：基本-基本
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-object-modify-field-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段类型：基本-基本")
+@PostMapping(value = "/modify-method-request-object-modify-field-type")
+public void modifyMethodRequestObjectModifyFieldType(ModifyFieldTypeRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldTypeRequest {
+
+    @ApiModelProperty(value = "修改类型字段")
+    private String field;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段类型：基本-基本")
+@PostMapping(value = "/modify-method-request-object-modify-field-type")
+public void modifyMethodRequestObjectModifyFieldType(ModifyFieldTypeRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldTypeRequest {
+
+    @ApiModelProperty(value = "修改类型字段")
+    private Integer field;
+}
+```
+
+###### 修改请求：对象类型中修改字段允许输入的值范围
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-object-modify-field-allow-values.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段允许输入的值范围")
+@PostMapping(value = "/modify-method-request-object-modify-field-allow-values")
+public void modifyMethodRequestObjectModifyFieldAllowValue(ModifyFieldAllowValuesRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldAllowValuesRequest {
+
+    @ApiModelProperty(value = "修改字段允许值",allowableValues = "1,2")
+    private Integer filed;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段允许输入的值范围")
+@PostMapping(value = "/modify-method-request-object-modify-field-allow-values")
+public void modifyMethodRequestObjectModifyFieldAllowValues(ModifyFieldAllowValuesRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldAllowValuesRequest {
+
+    @ApiModelProperty(value = "修改字段允许值",allowableValues = "1,2,3")
+    private Integer filed;
+}
+```
+
+###### 修改请求：对象类型中修改字段必填属性
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-object-modify-field-required.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段必填属性")
+@PostMapping(value = "/modify-method-request-object-modify-field-required")
+public void modifyMethodRequestObjectModifyFieldRequired(ModifyFieldRequiredRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldRequiredRequest {
+
+    @ApiModelProperty(value = "修改字段必填",required = true)
+    private Integer filed;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段必填属性")
+@PostMapping(value = "/modify-method-request-object-modify-field-required")
+public void modifyMethodRequestObjectModifyFieldRequired(ModifyFieldRequiredRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldRequiredRequest {
+
+    @ApiModelProperty(value = "修改字段必填")
+    private Integer filed;
+}
+```
+
+###### 修改请求：对象的集合类型字段的元素类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-modify-object-field-collection-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象的集合类型字段的元素类型")
+@PostMapping(value = "/modify-method-request-modify-object-field-collection-type")
+public void modifyMethodRequestModifyObjectFieldCollectionType(ModifyFieldCollectionTypeRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCollectionTypeRequest {
+
+    @ApiModelProperty(value = "集合字段")
+    private List<String> filed;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象的集合类型字段的元素类型")
+@PostMapping(value = "/modify-method-request-modify-object-field-collection-type")
+public void modifyMethodRequestModifyObjectFieldCollectionType(ModifyFieldCollectionTypeRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCollectionTypeRequest {
+
+    @ApiModelProperty(value = "集合字段")
+    private List<Integer> filed;
+}
+```
+
+###### 修改请求：对象类型中修改字段类型：对象-基本
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-modify-object-field-subObject-to-base.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段类型：对象-基本")
+@PostMapping(value = "/modify-method-request-modify-object-field-subObject-to-base")
+public void modifyMethodRequestModifyObjectFieldSubObjectToBase(ModifyFieldObjectToBaseRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldObjectToBaseRequest {
+
+    @ApiModelProperty(value = "集合字段")
+    private FieldObject fieldObject;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段类型：对象-基本")
+@PostMapping(value = "/modify-method-request-modify-object-field-subObject-to-base")
+public void modifyMethodRequestModifyObjectFieldSubObjectToBase(ModifyFieldObjectToBaseRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldObjectToBaseRequest {
+
+    @ApiModelProperty(value = "基础字段")
+    private Integer fieldObject;
+}
+```
+
+###### 修改请求：对象类型中修改字段类型：集合-基本修改请求：对象类型中修改字段类型：集合-基本
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-modify-object-field-collection-to-base.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段类型：集合-基本修改请求：对象类型中修改字段类型：集合-基本")
+@PostMapping(value = "/modify-method-request-modify-object-field-collection-to-base")
+public void modifyMethodRequestModifyObjectFieldCollectionToBase(ModifyFieldCollectionToBaseRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCollectionToBaseRequest {
+
+    @ApiModelProperty(value = "集合字段")
+    private List<String> fieldObject;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段类型：集合-基本")
+@PostMapping(value = "/modify-method-request-modify-object-field-collection-to-base")
+public void modifyMethodRequestModifyObjectFieldCollectionToBase(ModifyFieldCollectionToBaseRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCollectionToBaseRequest {
+
+    @ApiModelProperty(value = "基本字段")
+    private String fieldObject;
+}
+```
+
+###### 修改请求：对象类型中字段引用自身对象
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-modify-object-child-circle.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中字段引用自身对象")
+@PostMapping(value = "/modify-method-request-modify-object-child-circle")
+public void modifyMethodRequestModifyObjectChildCircle(ModifyFieldCircleRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCircleRequest {
+
+    @ApiModelProperty(value = "普通字段")
+    private String field;
+
+    @ApiModelProperty(value = "循环字段")
+    private ModifyFieldCircleRequest circleRequest;
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中字段引用自身对象")
+@PostMapping(value = "/modify-method-request-modify-object-child-circle")
+public void modifyMethodRequestModifyObjectChildCircle(ModifyFieldCircleRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldCircleRequest {
+
+    @ApiModelProperty(value = "普通字段")
+    private Integer field;
+
+    @ApiModelProperty(value = "循环字段")
+    private ModifyFieldCircleRequest circleRequest;
+}
+```
+
+###### 修改请求：对象类型中字段多层引用
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-modify-object-multi-ref.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中字段多层引用")
+@PostMapping(value = "/modify-method-request-modify-object-multi-ref")
+public void modifyMethodRequestModifyObjectMultiRef(ModifyFieldMultiRefRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldMultiRefRequest {
+
+    @ApiModelProperty(value = "普通字段")
+    private String field;
+
+    @ApiModelProperty(value = "第一层引用")
+    private FirstLevelRef firstLevelRef;
+
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中字段多层引用")
+@PostMapping(value = "/modify-method-request-modify-object-multi-ref")
+public void modifyMethodRequestModifyObjectMultiRef(ModifyFieldMultiRefRequest req) {
+}
+```
+```
+@ApiModel
+@Data
+public class ModifyFieldMultiRefRequest {
+
+    @ApiModelProperty(value = "普通字段")
+    private String field;
+
+    @ApiModelProperty(value = "第一层引用")
+    private FirstLevelRef firstLevelRef;
+
 }
 ```

@@ -420,3 +420,284 @@ public ModifyFieldExampleResponse modifyMethodResponseObjectModifyFieldExample()
     return new ModifyFieldExampleResponse();
 }
 ```
+
+###### 修改响应：对象类型中修改字段只读属性
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-object-modify-field-readonly.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段只读属性")
+@PostMapping(value = "/modify-method-response-object-modify-field-readonly")
+public ModifyFieldReadonlyResponse modifyMethodResponseObjectModifyFieldReadonly() {
+    return new ModifyFieldReadonlyResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段只读属性")
+@PostMapping(value = "/modify-method-response-object-modify-field-readonly")
+public ModifyFieldReadonlyResponse modifyMethodResponseObjectModifyFieldReadonly() {
+    return new ModifyFieldReadonlyResponse();
+}
+```
+
+###### 修改响应：对象类型的描述
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-modify-object-desc.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型的描述")
+@PostMapping(value = "/modify-method-response-modify-object-desc")
+public ModifyObjectDescResponse modifyMethodResponseModifyObjectDesc() {
+    return new ModifyObjectDescResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型的描述")
+@PostMapping(value = "/modify-method-response-modify-object-desc")
+public ModifyObjectDescResponse modifyMethodResponseModifyObjectDesc() {
+    return new ModifyObjectDescResponse();
+}
+```
+
+###### 修改响应：对象的集合类型字段的元素类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-modify-object-field-collection-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象的集合类型字段的元素类型")
+@PostMapping(value = "/modify-method-response-modify-object-field-collection-type")
+public ModifyFieldCollectionTypeResponse modifyMethodResponseModifyObjectFieldCollectionType() {
+    return new ModifyFieldCollectionTypeResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象的集合类型字段的元素类型")
+@PostMapping(value = "/modify-method-response-modify-object-field-collection-type")
+public ModifyFieldCollectionTypeResponse modifyMethodResponseModifyObjectFieldCollectionType() {
+    return new ModifyFieldCollectionTypeResponse();
+}
+```
+
+###### 修改响应：对象类型中修改字段类型：对象-基本
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-modify-object-field-subObject-to-base.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段类型：对象-基本")
+@PostMapping(value = "/modify-method-response-modify-object-field-subObject-to-base")
+public ModifyFieldObjectToBaseResponse modifyMethodResponseModifyObjectFieldSubObjectToBase() {
+    return new ModifyFieldObjectToBaseResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段类型：对象-基本")
+@PostMapping(value = "/modify-method-response-modify-object-field-subObject-to-base")
+public ModifyFieldObjectToBaseResponse modifyMethodResponseModifyObjectFieldSubObjectToBase() {
+    return new ModifyFieldObjectToBaseResponse();
+}
+```
+
+###### 修改响应：对象类型中修改字段类型：集合-基本
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-modify-object-field-collection-to-base.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段类型：集合-基本")
+@PostMapping(value = "/modify-method-response-modify-object-field-collection-to-base")
+public ModifyFieldCollectionToBaseResponse modifyMethodResponseModifyObjectFieldCollectionToBase() {
+    return new ModifyFieldCollectionToBaseResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中修改字段类型：集合-基本")
+@PostMapping(value = "/modify-method-response-modify-object-field-collection-to-base")
+public ModifyFieldCollectionToBaseResponse modifyMethodResponseModifyObjectFieldCollectionToBase() {
+    return new ModifyFieldCollectionToBaseResponse();
+}
+```
+
+###### 修改响应：对象类型中字段引用自身对象
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-modify-object-child-circle.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中字段引用自身对象")
+@PostMapping(value = "/modify-method-response-modify-object-child-circle")
+public ModifyFieldCircleResponse modifyMethodResponseModifyObjectChildCircle() {
+    return new ModifyFieldCircleResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中字段引用自身对象")
+@PostMapping(value = "/modify-method-response-modify-object-child-circle")
+public ModifyFieldCircleResponse modifyMethodResponseModifyObjectChildCircle() {
+    return new ModifyFieldCircleResponse();
+}
+```
+
+###### 修改响应：对象类型中字段多层引用
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-response-modify-object-multi-ref.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改响应：对象类型中字段多层引用")
+@PostMapping(value = "/modify-method-response-modify-object-multi-ref")
+public ModifyFieldMultiRefResponse modifyMethodResponseModifyObjectMultiRef() {
+    return new ModifyFieldMultiRefResponse();
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改响应：对象类型中字段多层引用")
+@PostMapping(value = "/modify-method-response-modify-object-multi-ref")
+public ModifyFieldMultiRefResponse modifyMethodResponseModifyObjectMultiRef() {
+    return new ModifyFieldMultiRefResponse();
+}
+```
+
+###### 修改请求：集合类型-基本类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-collection-to-base.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：集合类型-基本类型")
+@PostMapping(value = "/modify-method-request-collection-to-base")
+public void modifyMethodRequestCollectionToBase(List<String> req) {
+
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：集合类型-基本类型")
+@PostMapping(value = "/modify-method-request-collection-to-base")
+public void modifyMethodRequestCollectionToBase(String req) {
+}
+```
+
+###### 修改请求：基本类型-基本类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-base-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：基本类型-基本类型")
+@PostMapping(value = "/modify-method-request-base-type")
+public void modifyMethodRequestBaseType(Integer req) {
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：基本类型-基本类型")
+@PostMapping(value = "/modify-method-request-base-type")
+public void modifyMethodRequestBaseType(String req) {
+}
+```
+
+###### 修改请求：list中的类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-list-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：list中的类型")
+@PostMapping(value = "/modify-method-request-list-type")
+public void modifyMethodRequestListType(List<Integer> req) {
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：list中的类型")
+@PostMapping(value = "/modify-method-request-list-type")
+public void modifyMethodRequestListType(List<String> req) {
+}
+```
+
+###### 修改请求：set中的类型
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-set-type.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：set中的类型")
+@PostMapping(value = "/modify-method-request-set-type")
+public void modifyMethodRequestSetType(Set<Integer> req) {
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：set中的类型")
+@PostMapping(value = "/modify-method-request-set-type")
+public void modifyMethodRequestSetType(Set<String> req) {
+}
+```
+
+###### 修改请求：对象类型中添加字段
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-object-add-field.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中添加字段")
+@PostMapping(value = "/modify-method-request-object-add-field")
+public void modifyMethodRequestObjectAddField(AddFieldRequest req) {
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中添加字段")
+@PostMapping(value = "/modify-method-request-object-add-field")
+public void modifyMethodRequestObjectAddField(AddFieldRequest req) {
+}
+```
+
+###### 修改请求：对象类型中删除字段
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-object-delete-field.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中删除字段")
+@PostMapping(value = "/modify-method-request-object-delete-field")
+public void modifyMethodRequestObjectDeleteField(DeleteFieldRequest request) {
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中删除字段")
+@PostMapping(value = "/modify-method-request-object-delete-field")
+public void modifyMethodRequestObjectDeleteField(DeleteFieldRequest req) {
+}
+```
+
+###### 修改请求：对象类型中修改字段定义
+![image](https://github.com/kungyutucheng/swaggerComparator/blob/master/resources/images/swagger-diff-modify-method-request-object-modify-field-value.jpg)
+
+9002:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段定义")
+@PostMapping(value = "/modify-method-request-object-modify-field-value")
+public void modifyMethodRequestObjectModifyFieldValue(ModifyFieldValueRequest req) {
+}
+```
+
+9003:
+```
+@ApiOperation(value = "修改请求：对象类型中修改字段定义")
+@PostMapping(value = "/modify-method-request-object-modify-field-value")
+public void modifyMethodRequestObjectModifyFieldValue(ModifyFieldValueRequest req) {
+}
+```

@@ -153,7 +153,8 @@ class SwaggerDiff(Command):
         new_schema = self.get_new_definition(new_schema_name)
         orig_schema_name = self.generate_ref(orig_ref)
         orig_schema = self.get_orig_definition(orig_schema_name)
-        self.diff_schema(path, method, summary, new_schema, orig_schema, new_schema_name, property_type)
+        # 传入new_ref防止循环引用造成死循环
+        self.diff_schema(path, method, summary, new_schema, orig_schema, new_ref, property_type)
 
     def build_parameter_diff(self, path, method, summary, diff_type, new_parameter, orig_parameter):
         if diff_type == DiffType.REQUEST_PARAMETER_MODIFY_TYPE:
@@ -187,6 +188,13 @@ class SwaggerDiff(Command):
                 # 对比items内的数据引用
                 self.generate_schema(path, method, summary, new_ref, orig_ref, property_type)
 
+        if new_schema.ref is not None:
+            new_ref = new_schema.ref
+            orig_ref = orig_schema.ref
+            # 防止引用自身造成死循环
+            if new_ref != new_name:
+                self.generate_schema(path, method, summary, new_ref, orig_ref, property_type)
+
         suffix = None
         # 通过type和format综合判断类型是否一致
         if new_schema.type != orig_schema.type or new_schema.format != orig_schema.format:
@@ -209,7 +217,7 @@ class SwaggerDiff(Command):
         for new_property_name in new_properties:
             if new_property_name in orig_properties:
                 # 对比object类的字段属性
-                self.diff_schema(path, method, summary, new_properties.get(new_property_name), orig_properties.get(new_property_name), new_property_name, property_type)
+                self.diff_schema(path, method, summary, new_properties.get(new_property_name), orig_properties.get(new_property_name), new_name, property_type)
                 # 判断必填是否一致，需要在与properties属性同一层判断，因为真正的required与properties是同一层级，如果进入上一句之后在判断，则会丢失required
                 new_schema_required = self.generate_schema_required(new_schema.required, new_property_name)
                 orig_schema_required = self.generate_schema_required(orig_schema.required, new_property_name)
